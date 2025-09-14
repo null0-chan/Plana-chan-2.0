@@ -3,7 +3,7 @@ const chatContainer = document.getElementById("chat-container");
 const sendBtn = document.getElementById("buttonSend");
 const clearBtn = document.getElementById("clearChat");
 
-const API_KEY = "API_KEY"; // ganti dengan API key kamu
+const API_KEY = "AIzaSyD0XMK9eTHXMh8aNMoEBBQfAklPYdtBmKA"; // ganti dengan API key kamu
 const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent";
 
 const personaPrompt = `
