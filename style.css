@@ -161,12 +161,9 @@ input:checked ~ .slide {
   padding: 10px;
   display: flex;
   flex-direction: column;
-
   margin-top: 80px; /* ruang header */
   padding-bottom: 50px; /* ruang input */
   box-sizing: border-box;
-
-  scroll-padding-bottom: 90px; /* biar scroll stop pas di atas input */
 }
 
 /* Chat bubble */
@@ -178,7 +175,7 @@ input:checked ~ .slide {
   max-width: 70%;
   word-wrap: break-word;
   white-space: pre-wrap;
-
+  scroll-padding-bottom: 90px; /* biar scroll stop pas di atas input */
   opacity: 0;
   animation: fadeIn 0.3s forwards;
 }
