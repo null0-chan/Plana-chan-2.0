@@ -4,7 +4,7 @@ const sendBtn = document.getElementById("buttonSend");
 const clearBtn = document.getElementById("clearChat");
 const scrollDownBtn = document.getElementById("scrollDownBtn");
 
-const API_KEY = "API_KEY"; // ganti dengan API key kamu
+const API_KEY = "AIzaSyAD2VZAes9CWZ6383jRalm9lihoiRbA9JU"; // ganti dengan API key kamu
 const API_URL =
   "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent";
 
