@@ -123,8 +123,10 @@ chatContainer.addEventListener("scroll", () => {
 scrollDownBtn.addEventListener("click", scrollToBottom);
 
 // Input naik saat keyboard muncul (mobile)
+// Input naik saat keyboard muncul (mobile)
 if (window.visualViewport) {
   const chatInput = document.querySelector(".chat-input");
+  const chatContainer = document.getElementById("chat-container");
 
   const adjustForKeyboard = () => {
     const viewport = window.visualViewport;
@@ -133,14 +135,16 @@ if (window.visualViewport) {
         ? window.innerHeight - viewport.height
         : 0;
 
-    // geser input sesuai tinggi keyboard
+    // Geser input sesuai tinggi keyboard
     chatInput.style.transform = `translateY(-${offset}px)`;
 
-    // pastikan chat tetap scroll ke bawah saat keyboard naik
+    // Tambah padding bawah di chat agar pesan terakhir ga ketiban
+    chatContainer.style.paddingBottom = `${100 + offset}px`;
+
+    // auto scroll ke bawah pas keyboard muncul
     scrollToBottom();
   };
 
-  // trigger pas ukuran viewport berubah
   window.visualViewport.addEventListener("resize", adjustForKeyboard);
   window.visualViewport.addEventListener("scroll", adjustForKeyboard);
 }
