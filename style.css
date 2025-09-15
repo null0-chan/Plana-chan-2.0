@@ -181,33 +181,34 @@ input:checked ~ .slide {
 }
 
 /* Input Area */
-.chat-input {
-  display: flex;
-  align-items: center;
-  border-top: 1px solid #ddd;
-  padding: 10px;
-  background: #fff;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 70px;
-  position: fixed;
-}
-.chat-input textarea {
-  flex: 1;
-  padding: 10px;
-  border-radius: 10px;
-  border: none;
-  background: #f0f0f0;
-  outline: none;
-  resize: none;
-  height: 48px;
-  min-height: 48px;
-  max-height: 48px;
-  font-family: inherit;
-  overflow-y: auto;
-  place-content: center;
-}
+    /* Chat input */
+    .chat-input {
+      display: flex;
+      align-items: center;
+      border-top: 1px solid #ddd;
+      padding: 10px;
+      background: #fff;
+      min-height: 70px;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+
+    .chat-input textarea {
+      flex: 1;
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      background: #f0f0f0;
+      outline: none;
+      resize: none;
+      min-height: 48px;
+      max-height: 120px; /* batas 6 baris */
+      font-family: "Sans-Serif";
+      overflow-y: auto;
+      place-content: center;
+    }
 .chat-input textarea::placeholder {
     font-size: 15px; color: #aaa; 
 }
@@ -224,4 +225,34 @@ input:checked ~ .slide {
   cursor: pointer;
   background: #e0e0e0;
   font-size: 18px;
+}
+
+/* Tombol scroll ke bawah ala WA */
+.scroll-down {
+  position: fixed;
+  bottom: 110px;
+  right: 20px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background: #25d366; /* hijau ala WA */
+  color: #fff;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  z-index: 10;
+
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.scroll-down.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
 }
