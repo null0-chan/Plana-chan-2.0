@@ -163,7 +163,7 @@ input:checked ~ .slide {
   flex-direction: column;
 
   margin-top: 80px; /* ruang header */
-  padding-bottom: 90px; /* ruang input */
+  padding-bottom: 50px; /* ruang input */
   box-sizing: border-box;
 
   scroll-padding-bottom: 90px; /* biar scroll stop pas di atas input */
