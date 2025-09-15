@@ -203,7 +203,7 @@ input:checked ~ .slide {
       background: #f0f0f0;
       outline: none;
       resize: none;
-      min-height: 48px;
+      height: 48px;
       max-height: 120px; /* batas 6 baris */
       font-family: "Sans-Serif";
       overflow-y: auto;
