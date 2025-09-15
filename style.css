@@ -204,7 +204,6 @@ input:checked ~ .slide {
       outline: none;
       resize: none;
       height: 40px;
-      max-height: 40px; /* batas 6 baris */
       font-family: "Sans-Serif";
       overflow-y: auto;
       place-content: center;
