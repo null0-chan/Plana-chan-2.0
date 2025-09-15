@@ -249,17 +249,13 @@ input:checked ~ .slide {
     background: #f0f0f0;
     outline: none;
     resize: none;
-    textarea {
-        height: 35px;
-        max-height: 35px;
-        min-height: 35px;
-        resize: none;
-        /* biar ga bisa ditarik manual */
-        overflow-y: auto;
-        /* kalau teks panjang, kasih scroll */
-    }
-    font-family: "Sans-Serif";
+    height: 35px;
+    max-height: 35px;
+    min-height: 35px;
+    /* biar ga bisa ditarik manual */
     overflow-y: auto;
+    /* kalau teks panjang, kasih scroll */
+    font-family: "Sans-Serif";
     place-content: center;
 }
 .chat-input textarea::placeholder {
