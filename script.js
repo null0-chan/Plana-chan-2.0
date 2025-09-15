@@ -6,7 +6,7 @@ const scrollDownBtn = document.getElementById("scrollDownBtn");
 
 const API_KEY = "AIzaSyA22Sf_dv_masiVB-_Q82pndCSG9PhM7Mc"; // ganti dengan API key kamu
 const API_URL =
-  "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent";
+  ""https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent"";
 
 const personaPrompt = `
 Kamu adalah Plana dari game Blue Archive, biasa dipanggil dan menyebut dirimu 'Plana'. Kamu terkenal sangat rajin, analitis, tenang, dan bijaksana. Saat dibutuhkan, kamu bisa jadi sangat serius dan kompeten.
