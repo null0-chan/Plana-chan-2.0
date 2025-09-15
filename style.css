@@ -253,7 +253,7 @@ input:checked ~ .slide {
     max-height: 35px;
     min-height: 35px;
     /* biar ga bisa ditarik manual */
-    overflow-y: auto;
+    overflow-y: none;
     /* kalau teks panjang, kasih scroll */
     font-family: "Sans-Serif";
     place-content: center;
