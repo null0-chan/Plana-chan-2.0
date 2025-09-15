@@ -4,7 +4,7 @@ const sendBtn = document.getElementById("buttonSend");
 const clearBtn = document.getElementById("clearChat");
 const scrollDownBtn = document.getElementById("scrollDownBtn");
 
-const API_KEY = "AIzaSyD0XMK9eTHXMh8aNMoEBBQfAklPYdtBmKA"; // ganti dengan API key kamu
+const API_KEY = "API_KEY"; // ganti dengan API key kamu
 const API_URL =
   "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent";
 
@@ -29,10 +29,11 @@ function scrollToBottom() {
   });
 }
 
-// Auto-resize textarea (max 6 baris)
+// === Textarea mirip WhatsApp ===
+textarea.style.height = "35px";
 textarea.addEventListener("input", function () {
-  this.style.height = "auto";
-  this.style.height = Math.min(this.scrollHeight, 35) + "px";
+  this.style.height = "35px"; // reset dulu
+  this.style.height = Math.min(this.scrollHeight, 120) + "px"; // auto-expand max 120px (≈6 baris)
 });
 
 // Kirim pesan
@@ -48,8 +49,9 @@ async function sendMessage() {
   chatContainer.appendChild(message);
   scrollToBottom();
 
+  // reset textarea setelah kirim
   textarea.value = "";
-  textarea.style.height = "48px";
+  textarea.style.height = "35px";
   textarea.focus();
 
   const reply = document.createElement("div");
@@ -120,7 +122,7 @@ chatContainer.addEventListener("scroll", () => {
 });
 scrollDownBtn.addEventListener("click", scrollToBottom);
 
-//// Input naik saat keyboard muncul (mobile)
+// Input naik saat keyboard muncul (mobile)
 if (window.visualViewport) {
   const chatInput = document.querySelector(".chat-input");
 
