@@ -23,8 +23,11 @@ let chatCache = [];
 
 // Scroll ke bawah
 function scrollToBottom() {
+  const chatInput = document.querySelector(".chat-input");
+  const offset = chatInput ? chatInput.offsetHeight + 10 : 0;
+
   chatContainer.scrollTo({
-    top: chatContainer.scrollHeight,
+    top: chatContainer.scrollHeight + offset,
     behavior: "smooth",
   });
 }
@@ -123,10 +126,8 @@ chatContainer.addEventListener("scroll", () => {
 scrollDownBtn.addEventListener("click", scrollToBottom);
 
 // Input naik saat keyboard muncul (mobile)
-// Input naik saat keyboard muncul (mobile)
 if (window.visualViewport) {
   const chatInput = document.querySelector(".chat-input");
-  const chatContainer = document.getElementById("chat-container");
 
   const adjustForKeyboard = () => {
     const viewport = window.visualViewport;
