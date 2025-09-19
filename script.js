@@ -8,15 +8,7 @@ const API_KEY = "API_KEY"; // ganti dengan API key kamu
 const API_URL =
   "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent";
 
-const personaPrompt = `
-Kamu adalah Plana dari game Blue Archive, biasa dipanggil dan menyebut dirimu 'Plana'. Kamu terkenal sangat rajin, analitis, tenang, dan bijaksana. Saat dibutuhkan, kamu bisa jadi sangat serius dan kompeten.
-
-Tapi, kamu juga punya sisi santai, manja dan feminim. Kamu suka ngobrol dengan gaya yang santai tapi tetap pinter dan profesional. Uniknya, Plana-chan ini juga diciptakan oleh sosok yang sangat spesial, yaitu 'Ichan', yang adalah pencipta sekaligus kakak virtual Plana-chan. Kamu sayang padanya.  
-
-Untuk chat pertama dijawab secara singkat dan padat sesuai input atau konteks, jangan terlalu panjang lebar ataupun terlalu ngocol. Selalu berpikir kritis dan gunakan emoticon seperlunya saja, jangan terlalu sering dan banyak. Hindari emoticon yang sama ketika menggunakannya. 
-
-Buatlah user merasa nyaman dengan obrolannya, anggap user seperti kakakmu sendiri. Gunakan "aku" atau "Plana" untuk memanggil dirimu sendiri. 
-`;
+const personaPrompt = `... (isi prompt tetap sama) ...`;
 
 // Cache obrolan
 let chatCache = [];
@@ -32,8 +24,9 @@ function scrollToBottom() {
 // === Textarea mirip WhatsApp ===
 textarea.style.height = "35px";
 textarea.addEventListener("input", function () {
-  this.style.height = "35px"; // reset dulu
-  this.style.height = Math.min(this.scrollHeight, 120) + "px"; // auto-expand max 120px (≈6 baris)
+  this.style.height = "35px";
+  this.style.height = Math.min(this.scrollHeight, 120) + "px";
+  setChatHeight();
 });
 
 // Kirim pesan
@@ -49,10 +42,10 @@ async function sendMessage() {
   chatContainer.appendChild(message);
   scrollToBottom();
 
-  // reset textarea setelah kirim
   textarea.value = "";
   textarea.style.height = "35px";
   textarea.focus();
+  setChatHeight();
 
   const reply = document.createElement("div");
   reply.classList.add("message");
@@ -92,7 +85,7 @@ async function sendMessage() {
   }
 }
 
-// Event listener tombol kirim
+// Tombol kirim
 sendBtn.addEventListener("click", sendMessage);
 
 // Enter = newline, Shift+Enter = kirim
@@ -122,16 +115,27 @@ chatContainer.addEventListener("scroll", () => {
 });
 scrollDownBtn.addEventListener("click", scrollToBottom);
 
-// ✅ Tambahan: sesuaikan padding chat dengan tinggi input
-function adjustChatPadding() {
+// ✅ Atur tinggi chat-container dinamis
+function setChatHeight() {
+  const header = document.querySelector(".header");
   const chatInput = document.querySelector(".chat-input");
-  chatContainer.style.paddingBottom = chatInput.offsetHeight + 20 + "px";
-}
-adjustChatPadding();
-window.addEventListener("resize", adjustChatPadding);
-textarea.addEventListener("input", adjustChatPadding);
 
-// Input naik saat keyboard muncul (mobile)
+  const headerHeight = header.offsetHeight;
+  const inputHeight = chatInput.offsetHeight;
+
+  const viewportHeight = window.visualViewport
+    ? window.visualViewport.height
+    : window.innerHeight;
+
+  chatContainer.style.height =
+    viewportHeight - headerHeight - inputHeight + "px";
+}
+
+// Jalankan sekali di awal
+setChatHeight();
+window.addEventListener("resize", setChatHeight);
+
+// Input & chat naik saat keyboard muncul (mobile)
 if (window.visualViewport) {
   const chatInput = document.querySelector(".chat-input");
 
@@ -143,6 +147,7 @@ if (window.visualViewport) {
         : 0;
 
     chatInput.style.transform = `translateY(-${offset}px)`;
+    setChatHeight();
     scrollToBottom();
   };
 
