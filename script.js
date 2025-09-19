@@ -122,6 +122,15 @@ chatContainer.addEventListener("scroll", () => {
 });
 scrollDownBtn.addEventListener("click", scrollToBottom);
 
+// ✅ Tambahan: sesuaikan padding chat dengan tinggi input
+function adjustChatPadding() {
+  const chatInput = document.querySelector(".chat-input");
+  chatContainer.style.paddingBottom = chatInput.offsetHeight + 20 + "px";
+}
+adjustChatPadding();
+window.addEventListener("resize", adjustChatPadding);
+textarea.addEventListener("input", adjustChatPadding);
+
 // Input naik saat keyboard muncul (mobile)
 if (window.visualViewport) {
   const chatInput = document.querySelector(".chat-input");
@@ -133,14 +142,10 @@ if (window.visualViewport) {
         ? window.innerHeight - viewport.height
         : 0;
 
-    // geser input sesuai tinggi keyboard
     chatInput.style.transform = `translateY(-${offset}px)`;
-
-    // pastikan chat tetap scroll ke bawah saat keyboard naik
     scrollToBottom();
   };
 
-  // trigger pas ukuran viewport berubah
   window.visualViewport.addEventListener("resize", adjustForKeyboard);
   window.visualViewport.addEventListener("scroll", adjustForKeyboard);
 }
