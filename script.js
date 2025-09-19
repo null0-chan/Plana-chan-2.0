@@ -8,17 +8,16 @@ const API_KEY = "API_KEY"; // ganti dengan API key kamu
 const API_URL =
   "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent";
 
-const personaPrompt = `... (isi prompt tetap sama) ...`;
+const personaPrompt = `
+Kamu adalah Plana dari game Blue Archive ... (isi sama seperti sebelumnya)
+`;
 
 // Cache obrolan
 let chatCache = [];
 
 // Scroll ke bawah
 function scrollToBottom() {
-  chatContainer.scrollTo({
-    top: chatContainer.scrollHeight,
-    behavior: "smooth",
-  });
+  chatContainer.scrollTop = chatContainer.scrollHeight;
 }
 
 // === Textarea mirip WhatsApp ===
@@ -26,7 +25,7 @@ textarea.style.height = "35px";
 textarea.addEventListener("input", function () {
   this.style.height = "35px";
   this.style.height = Math.min(this.scrollHeight, 120) + "px";
-  setChatHeight();
+  scrollToBottom();
 });
 
 // Kirim pesan
@@ -45,7 +44,6 @@ async function sendMessage() {
   textarea.value = "";
   textarea.style.height = "35px";
   textarea.focus();
-  setChatHeight();
 
   const reply = document.createElement("div");
   reply.classList.add("message");
@@ -115,42 +113,9 @@ chatContainer.addEventListener("scroll", () => {
 });
 scrollDownBtn.addEventListener("click", scrollToBottom);
 
-// ✅ Atur tinggi chat-container dinamis
-function setChatHeight() {
-  const header = document.querySelector(".header");
-  const chatInput = document.querySelector(".chat-input");
-
-  const headerHeight = header.offsetHeight;
-  const inputHeight = chatInput.offsetHeight;
-
-  const viewportHeight = window.visualViewport
-    ? window.visualViewport.height
-    : window.innerHeight;
-
-  chatContainer.style.height =
-    viewportHeight - headerHeight - inputHeight + "px";
-}
-
-// Jalankan sekali di awal
-setChatHeight();
-window.addEventListener("resize", setChatHeight);
-
-// Input & chat naik saat keyboard muncul (mobile)
+// Pastikan tetap ke bawah saat keyboard naik (mobile)
 if (window.visualViewport) {
-  const chatInput = document.querySelector(".chat-input");
-
-  const adjustForKeyboard = () => {
-    const viewport = window.visualViewport;
-    const offset =
-      viewport.height < window.innerHeight
-        ? window.innerHeight - viewport.height
-        : 0;
-
-    chatInput.style.transform = `translateY(-${offset}px)`;
-    setChatHeight();
+  window.visualViewport.addEventListener("resize", () => {
     scrollToBottom();
-  };
-
-  window.visualViewport.addEventListener("resize", adjustForKeyboard);
-  window.visualViewport.addEventListener("scroll", adjustForKeyboard);
-}
+  });
+  }
