@@ -205,7 +205,8 @@ html, body {
   max-height: 120px;
   min-height: 35px;
   font-family: "Sans-Serif";
-  overflow-y: auto;
+  overflow-y: none;
+  place-content: center;
 }
 .chat-input textarea::placeholder {
   font-size: 15px;
