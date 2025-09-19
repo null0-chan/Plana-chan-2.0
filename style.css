@@ -155,15 +155,16 @@ input:checked ~ .slide {
 /* Chat Container */
 .chat-container {
     flex: 1;
-    max-height: calc(100vh - 140px);
+    position: absolute;   /* biar nempel antara header & input */
+    top: 80px;            /* pas di bawah header */
+    bottom: 70px;         /* pas di atas chat-input */
+    left: 0;
+    right: 0;
+
     overflow-y: auto;
     padding: 10px;
     display: flex;
     flex-direction: column;
-    padding-bottom: 50px;
-    /* ruang ekstra agar pesan terakhir tidak ketutup */
-    margin-top: 80px;
-    /* ruang header */
     box-sizing: border-box;
 }
 
